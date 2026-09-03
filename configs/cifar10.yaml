@@ -1,0 +1,22 @@
+seed: 42
+model:
+  image_size: 32
+  patch_size: 4
+  in_channels: 3
+  num_classes: 10
+  embed_dim: 192
+  depth: 4
+  num_heads: 3
+  mlp_ratio: 4.0
+  dropout: 0.1
+training:
+  epochs: 20
+  batch_size: 128
+  learning_rate: 0.0003
+  weight_decay: 0.05
+  num_workers: 2
+quantization:
+  bits: 8
+approximation:
+  enabled: false
+  noise_scale: 0.0
