@@ -686,7 +686,7 @@ A typical EdgeFormer experiment follows:
 
 ---
 
-# 🗺 Research Roadmap
+# Research Roadmap
 
 * [x] Tiny ViT implementation
 * [x] CIFAR training
@@ -743,7 +743,7 @@ Keeping these measurements separate prevents hardware claims from being overstat
 
 ---
 
-# 🔭 Long-Term Vision
+# Long-Term Vision
 
 The long-term goal is to transform EdgeFormer Studio from a model-analysis toolkit into an end-to-end **AI hardware/software co-design framework**.
 
