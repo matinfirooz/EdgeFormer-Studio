@@ -618,7 +618,7 @@ Then compare custom kernels against PyTorch.
 
 ---
 
-# 🖥 Interactive Demo
+# Interactive Demo
 
 After training a checkpoint:
 
@@ -840,7 +840,7 @@ If **EdgeFormer Studio** contributes to your academic work, please cite the repo
 
 ---
 
-# 📄 License
+# License
 
 This project is released under the **MIT License**.
 
