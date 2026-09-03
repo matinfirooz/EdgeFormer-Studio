@@ -398,7 +398,7 @@ These values are examples only.
 
 ---
 
-# 👁 Attention Visualization
+# Attention Visualization
 
 The Vision Transformer can directly return attention matrices:
 
@@ -459,7 +459,7 @@ INT8 Attention    Approximate Attention
 
 ---
 
-# 🔬 Suggested Research Experiments
+# Suggested Research Experiments
 
 ## 1. Precision Sweep
 
