@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgeformer-studio"
+version = "0.1.0"
+description = "Hardware-aware Vision Transformer experimentation toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "EdgeFormer Studio Contributors"}]
+dependencies = [
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "matplotlib>=3.8",
+  "PyYAML>=6.0",
+  "tqdm>=4.66",
+  "Pillow>=10.0"
+]
+
+[tool.setuptools.packages.find]
+include = ["edgeformer*"]
