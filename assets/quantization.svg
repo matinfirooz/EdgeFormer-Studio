@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860" role="img" aria-label="Quantization with a working training gradient">
+<defs><marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#2563eb"/></marker><marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#0f766e"/></marker><marker id="arrow-gray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#53647b"/></marker><marker id="arrow-amber" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#b45309"/></marker></defs>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif} .mono{font-family:DejaVu Sans Mono,monospace}</style>
+<rect width="1440" height="860" fill="#f7f9fd"/>
+<text x="48" y="51" font-size="13" fill="#0f766e" font-weight="700" letter-spacing="2">EDGEFORMER STUDIO</text>
+<text x="48" y="94" font-size="31" fill="#17243b" font-weight="700">Quantization with a working training gradient</text>
+<text x="48" y="127" font-size="16" fill="#53647b" font-weight="400">Two execution paths · both retain floating tensors and floating operator kernels</text>
+<rect x="38" y="165" width="1364" height="270" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
+<text x="60" y="196" font-size="17" fill="#17243b" font-weight="700">01  WEIGHT-ONLY POST-TRAINING SIMULATION</text>
+<text x="1380" y="196" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">The original floating model remains unchanged</text>
+<rect x="68" y="239" width="235" height="103" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="185.5" y="268" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Floating weight W</text>
+<text x="185.5" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Conv / Linear tensor</text>
+<rect x="368" y="239" width="275" height="103" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
+<text x="505.5" y="268" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Per-channel scale</text>
+<text x="505.5" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">s = max |W| / (2ᵇ⁻¹ − 1)</text>
+<text x="505.5" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">One scale per output channel</text>
+<rect x="708" y="239" width="310" height="103" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
+<text x="863.0" y="268" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Round and clamp</text>
+<text x="863.0" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">q = clamp(round(W / s))</text>
+<text x="863.0" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Symmetric narrow integer range</text>
+<rect x="1083" y="239" width="280" height="103" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="1223.0" y="268" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Floating weight Ŵ</text>
+<text x="1223.0" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Ŵ = q × s</text>
+<text x="1223.0" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Save Q/DQ values + metadata</text>
+<path d="M303 289 H368" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
+<path d="M643 289 H708" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
+<path d="M1018 289 H1083" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
+<text x="68" y="393" font-size="15" fill="#53647b" font-weight="400">Bias, LayerNorm, positional embeddings and all activations remain floating point in this PTQ path.</text>
+<rect x="38" y="468" width="1364" height="310" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
+<text x="60" y="499" font-size="17" fill="#17243b" font-weight="700">02  QUANTIZATION-AWARE TRAINING</text>
+<text x="1380" y="499" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Dynamic per-tensor input scale + per-output-channel weight scale</text>
+<rect x="68" y="544" width="235" height="107" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="185.5" y="573" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Master parameters</text>
+<text x="185.5" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Floating weights and gradients</text>
+<text x="185.5" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Updated by AdamW</text>
+<rect x="368" y="544" width="275" height="107" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
+<text x="505.5" y="573" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Fake quantize</text>
+<text x="505.5" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Input Q/DQ + weight Q/DQ</text>
+<text x="505.5" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">No fixed observer calibration</text>
+<rect x="708" y="544" width="310" height="107" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="863.0" y="573" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Floating Conv / Linear</text>
+<text x="863.0" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Use fake-quantized operands</text>
+<text x="863.0" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Bias remains floating point</text>
+<rect x="1083" y="544" width="280" height="107" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="1223.0" y="573" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Task loss</text>
+<text x="1223.0" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Classification cross-entropy</text>
+<text x="1223.0" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Then backpropagate</text>
+<path d="M303 595 H368" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M643 595 H708" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M1018 595 H1083" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M1223 651 V704 H185 V651" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-teal)" stroke-dasharray="6 5"/>
+<text x="700" y="697" font-size="14" fill="#0f766e" font-weight="400" text-anchor="middle">Backward pass: straight-through estimator replaces the zero derivative of round</text>
+<text x="68" y="748" font-size="14" fill="#53647b" font-weight="400">QAT checkpoints reconstruct their wrappers on load. Attention products, softmax and normalization remain floating.</text>
+<text x="48" y="822" font-size="14" fill="#53647b" font-weight="400">Supported symmetric precisions: 2–16 bits; 32 selects identity. W4 and W8 are simulations, not integer deployments.</text>
+</svg>

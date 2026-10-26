@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="1080" viewBox="0 0 1540 1080" role="img" aria-label="The attention block, as a dataflow schematic">
+<defs><marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#2563eb"/></marker><marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#0f766e"/></marker><marker id="arrow-gray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#53647b"/></marker><marker id="arrow-amber" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#b45309"/></marker></defs>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif} .mono{font-family:DejaVu Sans Mono,monospace}</style>
+<rect width="1540" height="1080" fill="#f7f9fd"/>
+<text x="48" y="51" font-size="13" fill="#0f766e" font-weight="700" letter-spacing="2">EDGEFORMER STUDIO</text>
+<text x="48" y="94" font-size="31" fill="#17243b" font-weight="700">The attention block, as a dataflow schematic</text>
+<text x="48" y="127" font-size="16" fill="#53647b" font-weight="400">Logical software datapath · solid arrows carry tensors · dashed arrows carry precision controls</text>
+<rect x="35" y="157" width="1470" height="196" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
+<text x="57" y="188" font-size="17" fill="#17243b" font-weight="700">A  TOKEN FRONT END</text>
+<text x="1483" y="188" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Example: image 32×32, patch 4×4, embedding width D</text>
+<rect x="62" y="225" width="225" height="93" rx="8" fill="#f3f6fa" stroke="#53647b" stroke-width="1.5"/>
+<text x="174.5" y="254" font-size="17" fill="#53647b" font-weight="700" text-anchor="middle">Input image</text>
+<text x="174.5" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">B × C × H × W</text>
+<rect x="352" y="225" width="265" height="93" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="484.5" y="254" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Patch projection</text>
+<text x="484.5" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Conv2d → flatten → transpose</text>
+<rect x="682" y="225" width="345" height="93" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="854.5" y="254" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Token assembly</text>
+<text x="854.5" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Prepend CLS · add position embedding</text>
+<rect x="1092" y="225" width="380" height="93" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="1282.0" y="254" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Token stream X</text>
+<text x="1282.0" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">B × N × D ; N = (H / P)² + 1</text>
+<path d="M287 272 H352" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M617 272 H682" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M1027 272 H1092" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<rect x="35" y="382" width="1470" height="402" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
+<text x="57" y="413" font-size="17" fill="#17243b" font-weight="700">B  PRE-NORM TRANSFORMER BLOCK</text>
+<text x="1483" y="413" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Repeat × depth · full-precision LayerNorm, softmax and residual adds</text>
+<g transform="translate(0 23)">
+<text x="62" y="448" font-size="17" fill="#2563eb" font-weight="700">X</text>
+<path d="M88 443 H154" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<circle cx="116" cy="443" r="4" fill="#2563eb"/>
+<rect x="154" y="415" width="170" height="78" rx="8" fill="#f3f6fa" stroke="#53647b" stroke-width="1.5"/>
+<text x="239.0" y="444" font-size="17" fill="#53647b" font-weight="700" text-anchor="middle">LayerNorm</text>
+<text x="239.0" y="470" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">B × N × D</text>
+<rect x="382" y="415" width="225" height="78" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="494.5" y="444" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">QKV projection</text>
+<text x="494.5" y="470" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">3 × (B × N × D)</text>
+<rect x="665" y="415" width="245" height="78" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="787.5" y="444" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Split into heads</text>
+<text x="787.5" y="470" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Q, K, V: B × h × N × d</text>
+<rect x="968" y="415" width="280" height="78" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="1108.0" y="444" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Attention core</text>
+<text x="1108.0" y="470" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">softmax(QKᵀ / √d) V</text>
+<rect x="1306" y="415" width="170" height="78" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="1391.0" y="444" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Output proj.</text>
+<text x="1391.0" y="470" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">B × N × D</text>
+<path d="M324 454 H382" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M607 454 H665" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M910 454 H968" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M1248 454 H1306" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M1391 493 V540 H1310" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<circle cx="1286" cy="540" r="23" fill="white" stroke="#2563eb" stroke-width="2"/>
+<text x="1286" y="547" font-size="24" fill="#2563eb" font-weight="400" text-anchor="middle">+</text>
+<path d="M116 443 V516 H1286 V517" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<text x="521" y="511" font-size="12" fill="#53647b" font-weight="400">residual X</text>
+<path d="M1263 540 H1108 V591" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<rect x="1005" y="591" width="206" height="82" rx="8" fill="#f3f6fa" stroke="#53647b" stroke-width="1.5"/>
+<text x="1108.0" y="620" font-size="17" fill="#53647b" font-weight="700" text-anchor="middle">LayerNorm</text>
+<text x="1108.0" y="646" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">B × N × D</text>
+<rect x="700" y="591" width="245" height="82" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="822.5" y="620" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Feed-forward MLP</text>
+<text x="822.5" y="646" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">D → hidden → D · GELU</text>
+<path d="M1005 632 H945" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M700 632 H562" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<circle cx="538" cy="632" r="23" fill="white" stroke="#2563eb" stroke-width="2"/>
+<text x="538" y="639" font-size="24" fill="#2563eb" font-weight="400" text-anchor="middle">+</text>
+<circle cx="1193" cy="540" r="4" fill="#2563eb"/>
+<path d="M1193 540 V565 H538 V609" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<text x="775" y="560" font-size="12" fill="#53647b" font-weight="400">residual after attention</text>
+<path d="M515 632 H225" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<text x="76" y="639" font-size="16" fill="#0f766e" font-weight="700">Block output</text>
+<text x="62" y="727" font-size="14" fill="#53647b" font-weight="400">SDPA path: attention tensors are internal to PyTorch. Inspection path: explicit QKᵀ, softmax and AV.</text>
+</g>
+<rect x="35" y="816" width="1470" height="204" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
+<text x="57" y="847" font-size="17" fill="#17243b" font-weight="700">C  NUMERICAL CONTROLS AND MODEL READOUT</text>
+<text x="1483" y="847" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Quantization and profiling do not change this logical graph</text>
+<rect x="62" y="886" width="450" height="96" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
+<text x="287.0" y="915" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Precision controls</text>
+<text x="287.0" y="941" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">PTQ: Conv / Linear weights only</text>
+<text x="287.0" y="963" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">QAT: Conv / Linear inputs + weights</text>
+<rect x="570" y="886" width="385" height="96" rx="8" fill="#f3f6fa" stroke="#53647b" stroke-width="1.5"/>
+<text x="762.5" y="915" font-size="17" fill="#53647b" font-weight="700" text-anchor="middle">Final normalization + CLS</text>
+<text x="762.5" y="941" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Normalize sequence → select token 0</text>
+<rect x="1013" y="886" width="459" height="96" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
+<text x="1242.5" y="915" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Classification head</text>
+<text x="1242.5" y="941" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Linear D → number of classes</text>
+<text x="1242.5" y="963" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Floating logits</text>
+<path d="M955 934 H1013" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M287 886 V873 H1391 V784" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)" stroke-dasharray="6 5"/>
+<text x="524" y="867" font-size="13" fill="#b45309" font-weight="400">Precision applies at Conv / Linear boundaries; nonlinear operations remain floating point.</text>
+<text x="48" y="1057" font-size="14" fill="#53647b" font-weight="400">This is a logical model diagram, not a claim of an implemented RTL accelerator or a particular physical memory hierarchy.</text>
+</svg>
