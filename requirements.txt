@@ -1,0 +1,2 @@
+# Full research installation. Core-only installation: python -m pip install -e .
+-e .[data,dev]
