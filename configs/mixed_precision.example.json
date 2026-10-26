@@ -1,0 +1,5 @@
+{
+  "patch_embed": 8,
+  "blocks.0.attn.qkv": 8,
+  "head": 8
+}
