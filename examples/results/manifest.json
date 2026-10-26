@@ -1,0 +1,6 @@
+{
+  "dataset": "synthetic",
+  "precision_execution": "floating simulation",
+  "warning": "These runs verify software behavior; they are not CIFAR/ImageNet accuracy or ASIC PPA results.",
+  "reproduce": "python scripts/reproduce_examples.py"
+}

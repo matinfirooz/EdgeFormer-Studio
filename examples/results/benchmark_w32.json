@@ -1,0 +1,77 @@
+{
+  "environment": {
+    "edgeformer": "0.2.0",
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "device": "cpu",
+    "threads": 1,
+    "cuda": null,
+    "device_name": "x86_64"
+  },
+  "checkpoint_loaded": true,
+  "execution": "floating point; quantization is simulated",
+  "model": {
+    "image_size": 16,
+    "patch_size": 4,
+    "in_channels": 3,
+    "num_classes": 4,
+    "embed_dim": 32,
+    "depth": 2,
+    "num_heads": 4,
+    "mlp_ratio": 2.0,
+    "dropout": 0.0,
+    "attention_backend": "sdpa"
+  },
+  "transform": {
+    "kind": "fp32"
+  },
+  "macs_per_image": {
+    "patch_embed": 24576,
+    "qkv": 104448,
+    "qk": 18496,
+    "av": 18496,
+    "attention_projection": 34816,
+    "attention": 176256,
+    "mlp": 139264,
+    "classifier": 128,
+    "total": 340224
+  },
+  "storage": {
+    "parameters": 19428,
+    "quantized_weight_parameters": 0,
+    "runtime_parameter_bytes": 77712,
+    "runtime_buffer_bytes": 0,
+    "ideal_packed_parameter_bytes": 77712,
+    "scale_bytes": 0,
+    "ideal_packed_total_bytes": 77712,
+    "storage_note": "Ideal contiguous bit packing with FP32 scales; runtime remains floating point."
+  },
+  "attention_storage": {
+    "tokens": 17,
+    "heads": 4,
+    "single_attention_matrix_bytes": 4624,
+    "score_plus_probability_bytes": 9248,
+    "row_score_plus_probability_bytes": 544,
+    "note": "Analytical score/probability storage only, excluding Q/K/V, training and backend workspace."
+  },
+  "latency": {
+    "mean_ms": 0.3058408,
+    "median_ms": 0.2823965,
+    "p95_ms": 0.401807,
+    "std_ms": 0.05518666530023354,
+    "min_ms": 0.269567,
+    "batch_size": 1,
+    "runs": 20,
+    "warmup": 5,
+    "images_per_second": 3269.6749419959665,
+    "scope": "forward only; excludes loading, preprocessing and host/device transfers"
+  },
+  "uniform_compute_proxy_mj": 0.001360896,
+  "proxy_assumptions": {
+    "pj_per_mac_int8": 0.25,
+    "bits": 32,
+    "applicable": true,
+    "scaling": "quadratic bit-width heuristic; uncalibrated; excludes memory and nonlinear operations"
+  }
+}

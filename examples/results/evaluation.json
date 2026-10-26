@@ -1,0 +1,25 @@
+{
+  "metrics": {
+    "loss": 0.32822585105895996,
+    "accuracy": 1.0,
+    "top5_accuracy": 1.0,
+    "samples": 32
+  },
+  "transform": {
+    "kind": "fp32"
+  },
+  "approximation_noise": 0.0,
+  "dataset": "synthetic",
+  "seed": 42,
+  "synthetic": true,
+  "environment": {
+    "edgeformer": "0.2.0",
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "device": "cpu",
+    "threads": 1,
+    "cuda": null,
+    "device_name": "x86_64"
+  }
+}

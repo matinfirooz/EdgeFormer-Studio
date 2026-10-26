@@ -1,0 +1,154 @@
+{
+  "config": {
+    "seed": 42,
+    "model": {
+      "image_size": 16,
+      "patch_size": 4,
+      "in_channels": 3,
+      "num_classes": 4,
+      "embed_dim": 32,
+      "depth": 2,
+      "num_heads": 4,
+      "mlp_ratio": 2.0,
+      "dropout": 0.0,
+      "attention_backend": "sdpa"
+    },
+    "data": {
+      "dataset": "synthetic",
+      "data_dir": "data",
+      "download": false,
+      "train_samples": 64,
+      "val_samples": 32
+    },
+    "training": {
+      "epochs": 3,
+      "batch_size": 16,
+      "learning_rate": 0.003,
+      "weight_decay": 0.01,
+      "num_workers": 0,
+      "grad_clip": 1.0,
+      "label_smoothing": 0.0
+    },
+    "quantization": {
+      "bits": 8
+    },
+    "approximation": {
+      "enabled": false,
+      "noise_scale": 0.0
+    }
+  },
+  "environment": {
+    "edgeformer": "0.2.0",
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "device": "cpu",
+    "threads": 1,
+    "cuda": null,
+    "device_name": "x86_64"
+  },
+  "samples": 32,
+  "synthetic": true,
+  "rows": [
+    {
+      "layer": "blocks.0.attn.proj",
+      "bits": 4,
+      "accuracy": 0.96875,
+      "accuracy_drop": 0.03125,
+      "logit_mae": 0.05328245460987091,
+      "logit_rmse": 0.07446865737438202,
+      "agreement": 0.96875,
+      "logit_cosine": 0.9969481825828552
+    },
+    {
+      "layer": "blocks.0.mlp.net.0",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.020013418048620224,
+      "logit_rmse": 0.031288351863622665,
+      "agreement": 1.0,
+      "logit_cosine": 0.9994820952415466
+    },
+    {
+      "layer": "patch_embed",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.020906023681163788,
+      "logit_rmse": 0.030826561152935028,
+      "agreement": 1.0,
+      "logit_cosine": 0.9994605779647827
+    },
+    {
+      "layer": "head",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.023510387167334557,
+      "logit_rmse": 0.029884133487939835,
+      "agreement": 1.0,
+      "logit_cosine": 0.9996176958084106
+    },
+    {
+      "layer": "blocks.0.attn.qkv",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.021512731909751892,
+      "logit_rmse": 0.02772832103073597,
+      "agreement": 1.0,
+      "logit_cosine": 0.9996089339256287
+    },
+    {
+      "layer": "blocks.1.attn.qkv",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.015054915100336075,
+      "logit_rmse": 0.02107086032629013,
+      "agreement": 1.0,
+      "logit_cosine": 0.9997544884681702
+    },
+    {
+      "layer": "blocks.1.attn.proj",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.012627283111214638,
+      "logit_rmse": 0.01620880328118801,
+      "agreement": 1.0,
+      "logit_cosine": 0.9998958706855774
+    },
+    {
+      "layer": "blocks.0.mlp.net.3",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.011387806385755539,
+      "logit_rmse": 0.014229611493647099,
+      "agreement": 1.0,
+      "logit_cosine": 0.9999291300773621
+    },
+    {
+      "layer": "blocks.1.mlp.net.0",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.010160956531763077,
+      "logit_rmse": 0.012612140737473965,
+      "agreement": 1.0,
+      "logit_cosine": 0.9999351501464844
+    },
+    {
+      "layer": "blocks.1.mlp.net.3",
+      "bits": 4,
+      "accuracy": 1.0,
+      "accuracy_drop": 0.0,
+      "logit_mae": 0.0062278504483401775,
+      "logit_rmse": 0.00894252024590969,
+      "agreement": 1.0,
+      "logit_cosine": 0.9999743700027466
+    }
+  ]
+}
