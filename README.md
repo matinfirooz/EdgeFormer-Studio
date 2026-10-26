@@ -2,7 +2,6 @@
 
 **Train a compact ViT. Study its precision. Find its sensitive layers. Report costs honestly.**
 
-[![Checks](https://github.com/matinfirooz/EdgeFormer-Studio/actions/workflows/ci.yml/badge.svg)](https://github.com/matinfirooz/EdgeFormer-Studio/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-2563eb)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c)
 ![License](https://img.shields.io/badge/License-MIT-0f766e)
