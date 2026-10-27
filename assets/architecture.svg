@@ -1,74 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-label="From a floating model to a reproducible design study">
-<defs><marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#2563eb"/></marker><marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#0f766e"/></marker><marker id="arrow-gray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#53647b"/></marker><marker id="arrow-amber" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#b45309"/></marker></defs>
-<style>text{font-family:DejaVu Sans,Arial,sans-serif} .mono{font-family:DejaVu Sans Mono,monospace}</style>
-<rect width="1440" height="1040" fill="#f7f9fd"/>
-<text x="48" y="51" font-size="13" fill="#0f766e" font-weight="700" letter-spacing="2">EDGEFORMER STUDIO</text>
-<text x="48" y="94" font-size="31" fill="#17243b" font-weight="700">From a floating model to a reproducible design study</text>
-<text x="48" y="127" font-size="16" fill="#53647b" font-weight="400">Executable workflows for compact Vision Transformers · version 0.2</text>
-<rect x="38" y="159" width="1364" height="225" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
-<text x="60" y="190" font-size="17" fill="#17243b" font-weight="700">01  TRAIN AND VALIDATE</text>
-<text x="1380" y="190" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Checkpoints preserve configuration, optimizer, schedule and RNG</text>
-<rect x="65" y="225" width="225" height="110" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="177.5" y="254" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Data loaders</text>
-<text x="177.5" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">CIFAR / Tiny ImageNet</text>
-<text x="177.5" y="302" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Seeded offline smoke data</text>
-<rect x="351" y="225" width="245" height="110" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="473.5" y="254" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">TinyViT</text>
-<text x="473.5" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">FP32 baseline or QAT</text>
-<text x="473.5" y="302" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Patch → attention → MLP</text>
-<rect x="657" y="225" width="300" height="110" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="807.0" y="254" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Training engine</text>
-<text x="807.0" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">AdamW · cosine schedule</text>
-<text x="807.0" y="302" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Validation every epoch</text>
-<rect x="1018" y="225" width="350" height="110" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="1193.0" y="254" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Best / latest checkpoints</text>
-<text x="1193.0" y="280" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Atomic state-dict saves</text>
-<text x="1193.0" y="302" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Safe loading · epoch resume</text>
-<path d="M290 280 H351" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<path d="M596 280 H657" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<path d="M957 280 H1018" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<rect x="38" y="413" width="1364" height="294" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
-<text x="60" y="444" font-size="17" fill="#17243b" font-weight="700">02  COMPARE MATCHED DESIGN POINTS</text>
-<text x="1380" y="444" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Same reference weights, evaluation batches and input shapes</text>
-<rect x="65" y="491" width="240" height="130" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="185.0" y="520" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Reference model</text>
-<text x="185.0" y="546" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Floating checkpoint</text>
-<text x="185.0" y="568" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">or seeded untrained model</text>
-<text x="185.0" y="590" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">No hidden random fallback</text>
-<rect x="381" y="491" width="280" height="130" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
-<text x="521.0" y="520" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Precision / error variants</text>
-<text x="521.0" y="546" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">W32 / W8 / W4 · mixed plan</text>
-<text x="521.0" y="568" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Per-channel weight PTQ</text>
-<text x="521.0" y="590" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Optional statistical noise</text>
-<rect x="737" y="491" width="285" height="130" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="879.5" y="520" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Matched evaluation</text>
-<text x="879.5" y="546" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Top-1 · loss · agreement</text>
-<text x="879.5" y="568" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Logit RMSE · attention JS</text>
-<text x="879.5" y="590" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Layer sensitivity</text>
-<rect x="1098" y="491" width="270" height="130" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="1233.0" y="520" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Design table</text>
-<text x="1233.0" y="546" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">CSV + JSON + Pareto plot</text>
-<text x="1233.0" y="568" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Accuracy / packed storage</text>
-<text x="1233.0" y="590" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Runtime measured separately</text>
-<path d="M305 551 H381" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
-<path d="M661 551 H737" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
-<path d="M1022 551 H1098" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
-<path d="M1193 335 V398 H51 V464 H185 V491" fill="none" stroke="#53647b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-gray)" stroke-dasharray="6 5"/>
-<text x="65" y="665" font-size="14" fill="#53647b" font-weight="400">PTQ: weights only  |  QAT: Linear/Conv input + weight Q/DQ with straight-through gradients</text>
-<rect x="38" y="735" width="1364" height="224" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
-<text x="60" y="766" font-size="17" fill="#17243b" font-weight="700">03  INTERPRET EACH KIND OF EVIDENCE</text>
-<text x="1380" y="766" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Measured execution, numerical simulation and analytical cost stay distinguishable</text>
-<rect x="65" y="805" width="393" height="112" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="261.5" y="834" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Measured</text>
-<text x="261.5" y="860" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Forward latency · median / p95</text>
-<text x="261.5" y="882" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Device, thread count, batch size</text>
-<rect x="490" y="805" width="408" height="112" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
-<text x="694.0" y="834" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Simulated numerics</text>
-<text x="694.0" y="860" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Quantization grid · output noise</text>
-<text x="694.0" y="882" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Accuracy changes on selected data</text>
-<rect x="930" y="805" width="438" height="112" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="1149.0" y="834" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Analytical hardware cost</text>
-<text x="1149.0" y="860" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">MACs · ideal packed bytes + scales</text>
-<text x="1149.0" y="882" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Uncalibrated compute-energy proxy</text>
-<text x="48" y="1000" font-size="14" fill="#53647b" font-weight="400">No integer runtime kernels, circuit PPA or trained-dataset accuracy is implied by a precision label.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1030" viewBox="0 0 1600 1030" role="img" aria-labelledby="title description">
+<title id="title">Experiment architecture</title><desc id="description">Reference training feeds floating, post-training and quantization-aware candidates. The candidates use fixed evaluation batches. Numerical metrics, host timing and analytical hardware costs are reported separately.</desc>
+<defs><marker id="arrow-182B46" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#182B46"/></marker><marker id="arrow-315DA8" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#315DA8"/></marker><marker id="arrow-087F86" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#087F86"/></marker><marker id="arrow-AD6515" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#AD6515"/></marker><marker id="arrow-5E6F85" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#5E6F85"/></marker></defs>
+<style>text{font-family:'DejaVu Sans',Arial,sans-serif} text{font-variant-ligatures:none}</style>
+<g id="background">
+<rect x="0" y="0" width="1600" height="1030" rx="0" fill="white" stroke="none" stroke-width="1.5"/>
+<rect x="56" y="170" width="360" height="610" rx="9" fill="#F5F7FA" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="474" y="170" width="480" height="610" rx="9" fill="#F5F7FA" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="1012" y="170" width="532" height="610" rx="9" fill="#F5F7FA" stroke="#CFD9E5" stroke-width="1.5"/>
+</g>
+<g id="edges">
+<path d="M236,340 L236,372" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M236,462 L236,494" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M236,584 L236,622" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M388,678 L446,678 L446,295" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M446,295 L510,295" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M446,443 L510,443" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M446,606 L510,606" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M918,295 L982,295 L982,606 L918,606" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M918,443 L982,443" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M982,443 L1048,443" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M1278,340 L1278,386" fill="none" stroke="#5E6F85" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-5E6F85)"/>
+<path d="M1278,516 L1278,578" fill="none" stroke="#087F86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-087F86)"/>
+</g>
+<g id="nodes">
+<rect x="56" y="35" width="26" height="5" rx="0" fill="#087F86" stroke="none" stroke-width="1.5"/>
+<rect x="78" y="188" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="496" y="188" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="1034" y="188" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="84" y="250" width="304" height="90" rx="7" fill="white" stroke="#5E6F85" stroke-width="1.7"/>
+<rect x="84" y="372" width="304" height="90" rx="7" fill="#EEF3FC" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="84" y="494" width="304" height="90" rx="7" fill="#EEF3FC" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="84" y="622" width="304" height="112" rx="7" fill="#EDF7F6" stroke="#087F86" stroke-width="1.7"/>
+<circle cx="446" cy="443" r="4" fill="#182B46"/>
+<circle cx="446" cy="606" r="4" fill="#182B46"/>
+<rect x="510" y="250" width="408" height="90" rx="7" fill="white" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="510" y="386" width="408" height="116" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="584" y="466" width="60" height="27" rx="5" fill="white" stroke="#AD6515" stroke-width="1"/>
+<rect x="655" y="466" width="60" height="27" rx="5" fill="white" stroke="#AD6515" stroke-width="1"/>
+<rect x="726" y="466" width="118" height="27" rx="5" fill="white" stroke="#AD6515" stroke-width="1"/>
+<rect x="510" y="550" width="408" height="112" rx="7" fill="#EEF3FC" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="510" y="704" width="408" height="43" rx="5" fill="white" stroke="#AD6515" stroke-width="1.5" stroke-dasharray="5 4"/>
+<circle cx="982" cy="443" r="4" fill="#182B46"/>
+<rect x="1048" y="250" width="460" height="90" rx="7" fill="white" stroke="#5E6F85" stroke-width="1.7"/>
+<rect x="1048" y="386" width="460" height="130" rx="7" fill="#EDF7F6" stroke="#087F86" stroke-width="1.7"/>
+<rect x="1048" y="578" width="460" height="112" rx="7" fill="white" stroke="#087F86" stroke-width="1.7"/>
+<rect x="56" y="851" width="480" height="108" rx="9" fill="white" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="56" y="851" width="5" height="108" rx="0" fill="#315DA8" stroke="none" stroke-width="1.5"/>
+<rect x="560" y="851" width="480" height="108" rx="9" fill="white" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="560" y="851" width="5" height="108" rx="0" fill="#087F86" stroke="none" stroke-width="1.5"/>
+<rect x="1064" y="851" width="480" height="108" rx="9" fill="white" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="1064" y="851" width="5" height="108" rx="0" fill="#AD6515" stroke="none" stroke-width="1.5"/>
+</g>
+<g id="labels">
+<text id="label-0" x="96" y="44" font-size="14" fill="#087F86" font-weight="700" letter-spacing="2.0">EDGEFORMER STUDIO</text>
+<text id="label-1" x="1544" y="44" font-size="13" fill="#5E6F85" font-weight="400" text-anchor="end" letter-spacing="1.7">FIGURE 01</text>
+<text id="label-2" x="56" y="100" font-size="38" fill="#182B46" font-weight="700">Experiment architecture</text>
+<text id="label-3" x="56" y="137" font-size="19" fill="#5E6F85" font-weight="400">A shared starting point, controlled numerical variants, and comparable reports.</text>
+<text id="label-4" x="92" y="208" font-size="16" fill="white" font-weight="700" text-anchor="middle">A</text>
+<text id="label-5" x="119" y="209" font-size="21" fill="#182B46" font-weight="700">Train reference</text>
+<text id="label-6" x="510" y="208" font-size="16" fill="white" font-weight="700" text-anchor="middle">B</text>
+<text id="label-7" x="537" y="209" font-size="21" fill="#182B46" font-weight="700">Build candidates</text>
+<text id="label-8" x="1048" y="208" font-size="16" fill="white" font-weight="700" text-anchor="middle">C</text>
+<text id="label-9" x="1075" y="209" font-size="21" fill="#182B46" font-weight="700">Evaluate &amp; report</text>
+<text id="label-10" x="236.0" y="281" font-size="21" fill="#5E6F85" font-weight="700" text-anchor="middle">Dataset loaders</text>
+<text id="label-11" x="236.0" y="309" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">CIFAR · Tiny ImageNet</text>
+<text id="label-12" x="236.0" y="403" font-size="21" fill="#315DA8" font-weight="700" text-anchor="middle">TinyViT</text>
+<text id="label-13" x="236.0" y="431" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Patch → attention → MLP</text>
+<text id="label-14" x="236.0" y="525" font-size="21" fill="#315DA8" font-weight="700" text-anchor="middle">Optimize &amp; validate</text>
+<text id="label-15" x="236.0" y="553" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">AdamW · cosine schedule</text>
+<text id="label-16" x="236.0" y="653" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Reference checkpoint</text>
+<text id="label-17" x="236.0" y="681" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">FP32 weights + configuration</text>
+<text id="label-18" x="236.0" y="706" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Best / latest · epoch resume</text>
+<text id="label-19" x="714.0" y="281" font-size="21" fill="#315DA8" font-weight="700" text-anchor="middle">FP32 reference</text>
+<text id="label-20" x="714.0" y="309" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Unmodified numerical baseline</text>
+<text id="label-21" x="714.0" y="417" font-size="21" fill="#AD6515" font-weight="700" text-anchor="middle">Weight-only PTQ</text>
+<text id="label-22" x="714.0" y="445" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Per-output-channel weight scales</text>
+<text id="label-23" x="614.0" y="485" font-size="15" fill="#AD6515" font-weight="700" text-anchor="middle">W8</text>
+<text id="label-24" x="685.0" y="485" font-size="15" fill="#AD6515" font-weight="700" text-anchor="middle">W4</text>
+<text id="label-25" x="785.0" y="485" font-size="15" fill="#AD6515" font-weight="700" text-anchor="middle">Mixed plan</text>
+<text id="label-26" x="714.0" y="581" font-size="21" fill="#315DA8" font-weight="700" text-anchor="middle">QAT fine-tuning</text>
+<text id="label-27" x="714.0" y="609" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Dynamic input + weight Q/DQ</text>
+<text id="label-28" x="714.0" y="634" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Additional optimization budget</text>
+<text id="label-29" x="714" y="731" font-size="16" fill="#AD6515" font-weight="400" text-anchor="middle">Optional output noise: FP32 / PTQ</text>
+<text id="label-30" x="1278.0" y="281" font-size="21" fill="#5E6F85" font-weight="700" text-anchor="middle">Fixed evaluation batches</text>
+<text id="label-31" x="1278.0" y="309" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Matched samples · preprocessing · shapes</text>
+<text id="label-32" x="1278.0" y="417" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Matched evaluation</text>
+<text id="label-33" x="1278.0" y="445" font-size="18" fill="#182B46" font-weight="400" text-anchor="middle">Top-1 · loss · prediction agreement</text>
+<text id="label-34" x="1278.0" y="470" font-size="18" fill="#182B46" font-weight="400" text-anchor="middle">Logit RMSE · attention divergence</text>
+<text id="label-35" x="1278.0" y="609" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Study outputs</text>
+<text id="label-36" x="1278.0" y="637" font-size="18" fill="#182B46" font-weight="400" text-anchor="middle">CSV / JSON · layer sensitivity</text>
+<text id="label-37" x="1278.0" y="662" font-size="18" fill="#182B46" font-weight="400" text-anchor="middle">Accuracy–storage Pareto set</text>
+<text id="label-38" x="1278" y="742" font-size="16" fill="#5E6F85" font-weight="400" text-anchor="middle">Runtime is recorded on the execution host.</text>
+<text id="label-39" x="56" y="827" font-size="14" fill="#5E6F85" font-weight="700" letter-spacing="1.6">REPORT FIELDS</text>
+<text id="label-40" x="80" y="885" font-size="21" fill="#315DA8" font-weight="700">Measured execution</text>
+<text id="label-41" x="80" y="919" font-size="17" fill="#182B46" font-weight="400">Forward latency · median / p95</text>
+<text id="label-42" x="584" y="885" font-size="21" fill="#087F86" font-weight="700">Numerical behavior</text>
+<text id="label-43" x="584" y="919" font-size="17" fill="#182B46" font-weight="400">Accuracy · agreement · distortion</text>
+<text id="label-44" x="1088" y="885" font-size="21" fill="#AD6515" font-weight="700">Analytical hardware cost</text>
+<text id="label-45" x="1088" y="919" font-size="17" fill="#182B46" font-weight="400">MACs · packed bytes · energy proxy</text>
+<text id="label-46" x="56" y="998" font-size="16" fill="#5E6F85" font-weight="400">Q/DQ uses floating kernels. Packed storage and energy are analytical estimates; energy is uncalibrated.</text>
+</g>
 </svg>

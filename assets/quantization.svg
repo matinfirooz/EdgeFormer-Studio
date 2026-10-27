@@ -1,56 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860" role="img" aria-label="Quantization with a working training gradient">
-<defs><marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#2563eb"/></marker><marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#0f766e"/></marker><marker id="arrow-gray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#53647b"/></marker><marker id="arrow-amber" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4.5 L0 9 Z" fill="#b45309"/></marker></defs>
-<style>text{font-family:DejaVu Sans,Arial,sans-serif} .mono{font-family:DejaVu Sans Mono,monospace}</style>
-<rect width="1440" height="860" fill="#f7f9fd"/>
-<text x="48" y="51" font-size="13" fill="#0f766e" font-weight="700" letter-spacing="2">EDGEFORMER STUDIO</text>
-<text x="48" y="94" font-size="31" fill="#17243b" font-weight="700">Quantization with a working training gradient</text>
-<text x="48" y="127" font-size="16" fill="#53647b" font-weight="400">Two execution paths · both retain floating tensors and floating operator kernels</text>
-<rect x="38" y="165" width="1364" height="270" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
-<text x="60" y="196" font-size="17" fill="#17243b" font-weight="700">01  WEIGHT-ONLY POST-TRAINING SIMULATION</text>
-<text x="1380" y="196" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">The original floating model remains unchanged</text>
-<rect x="68" y="239" width="235" height="103" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="185.5" y="268" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Floating weight W</text>
-<text x="185.5" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Conv / Linear tensor</text>
-<rect x="368" y="239" width="275" height="103" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
-<text x="505.5" y="268" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Per-channel scale</text>
-<text x="505.5" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">s = max |W| / (2ᵇ⁻¹ − 1)</text>
-<text x="505.5" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">One scale per output channel</text>
-<rect x="708" y="239" width="310" height="103" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
-<text x="863.0" y="268" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Round and clamp</text>
-<text x="863.0" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">q = clamp(round(W / s))</text>
-<text x="863.0" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Symmetric narrow integer range</text>
-<rect x="1083" y="239" width="280" height="103" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="1223.0" y="268" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Floating weight Ŵ</text>
-<text x="1223.0" y="294" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Ŵ = q × s</text>
-<text x="1223.0" y="316" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Save Q/DQ values + metadata</text>
-<path d="M303 289 H368" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
-<path d="M643 289 H708" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
-<path d="M1018 289 H1083" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-amber)"/>
-<text x="68" y="393" font-size="15" fill="#53647b" font-weight="400">Bias, LayerNorm, positional embeddings and all activations remain floating point in this PTQ path.</text>
-<rect x="38" y="468" width="1364" height="310" rx="12" fill="white" stroke="#dbe3ef" stroke-width="1.5"/>
-<text x="60" y="499" font-size="17" fill="#17243b" font-weight="700">02  QUANTIZATION-AWARE TRAINING</text>
-<text x="1380" y="499" font-size="12" fill="#53647b" font-weight="400" text-anchor="end">Dynamic per-tensor input scale + per-output-channel weight scale</text>
-<rect x="68" y="544" width="235" height="107" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="185.5" y="573" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Master parameters</text>
-<text x="185.5" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Floating weights and gradients</text>
-<text x="185.5" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Updated by AdamW</text>
-<rect x="368" y="544" width="275" height="107" rx="8" fill="#fff7e9" stroke="#b45309" stroke-width="1.5"/>
-<text x="505.5" y="573" font-size="17" fill="#b45309" font-weight="700" text-anchor="middle">Fake quantize</text>
-<text x="505.5" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Input Q/DQ + weight Q/DQ</text>
-<text x="505.5" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">No fixed observer calibration</text>
-<rect x="708" y="544" width="310" height="107" rx="8" fill="#edf3ff" stroke="#2563eb" stroke-width="1.5"/>
-<text x="863.0" y="573" font-size="17" fill="#2563eb" font-weight="700" text-anchor="middle">Floating Conv / Linear</text>
-<text x="863.0" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Use fake-quantized operands</text>
-<text x="863.0" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Bias remains floating point</text>
-<rect x="1083" y="544" width="280" height="107" rx="8" fill="#ecf8f5" stroke="#0f766e" stroke-width="1.5"/>
-<text x="1223.0" y="573" font-size="17" fill="#0f766e" font-weight="700" text-anchor="middle">Task loss</text>
-<text x="1223.0" y="599" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Classification cross-entropy</text>
-<text x="1223.0" y="621" font-size="13" fill="#17243b" font-weight="400" text-anchor="middle">Then backpropagate</text>
-<path d="M303 595 H368" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<path d="M643 595 H708" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<path d="M1018 595 H1083" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
-<path d="M1223 651 V704 H185 V651" fill="none" stroke="#0f766e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow-teal)" stroke-dasharray="6 5"/>
-<text x="700" y="697" font-size="14" fill="#0f766e" font-weight="400" text-anchor="middle">Backward pass: straight-through estimator replaces the zero derivative of round</text>
-<text x="68" y="748" font-size="14" fill="#53647b" font-weight="400">QAT checkpoints reconstruct their wrappers on load. Attention products, softmax and normalization remain floating.</text>
-<text x="48" y="822" font-size="14" fill="#53647b" font-weight="400">Supported symmetric precisions: 2–16 bits; 32 selects identity. W4 and W8 are simulations, not integer deployments.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title description">
+<title id="title">Precision simulation</title><desc id="description">Per-output-channel weight scaling, division, rounding and clipping, and dequantization define the shared primitive. Weight-only PTQ stores dequantized floating weights. QAT applies separate input and weight fake quantizers and uses a straight-through gradient to floating master weights.</desc>
+<defs><marker id="arrow-182B46" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#182B46"/></marker><marker id="arrow-315DA8" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#315DA8"/></marker><marker id="arrow-087F86" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#087F86"/></marker><marker id="arrow-AD6515" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#AD6515"/></marker><marker id="arrow-5E6F85" markerWidth="11" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#5E6F85"/></marker></defs>
+<style>text{font-family:'DejaVu Sans',Arial,sans-serif} text{font-variant-ligatures:none}</style>
+<g id="background">
+<rect x="0" y="0" width="1600" height="1100" rx="0" fill="white" stroke="none" stroke-width="1.5"/>
+<rect x="56" y="170" width="1488" height="322" rx="9" fill="#F5F7FA" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="56" y="559" width="520" height="468" rx="9" fill="white" stroke="#CFD9E5" stroke-width="1.5"/>
+<rect x="620" y="559" width="924" height="468" rx="9" fill="white" stroke="#CFD9E5" stroke-width="1.5"/>
+</g>
+<g id="edges">
+<path d="M260,400 L330,400" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M540,400 L610,400" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M930,400 L1000,400" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M1210,400 L1280,400" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M295,400 L295,274 L330,274" fill="none" stroke="#AD6515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-AD6515)"/>
+<path d="M435,313 L435,359" fill="none" stroke="#AD6515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" marker-end="url(#arrow-AD6515)"/>
+<path d="M740,274 L1105,274 L1105,359" fill="none" stroke="#AD6515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" marker-end="url(#arrow-AD6515)"/>
+<path d="M280,693 L334,693" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M442,735 L442,780 L340,780 L340,829" fill="none" stroke="#AD6515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-AD6515)"/>
+<path d="M82,875 L216,875" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M464,875 L550,875" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M864,707 L914,707" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M864,845 L914,845" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M1104,707 L1351,707 L1351,770" fill="none" stroke="#AD6515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-AD6515)"/>
+<path d="M1104,845 L1222,845" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M1351,880 L1351,939" fill="none" stroke="#182B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-182B46)"/>
+<path d="M1222,970 L650,970 L650,630 L769,630 L769,665" fill="none" stroke="#087F86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow-087F86)"/>
+</g>
+<g id="nodes">
+<rect x="56" y="35" width="26" height="5" rx="0" fill="#087F86" stroke="none" stroke-width="1.5"/>
+<rect x="78" y="188" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="330" y="235" width="410" height="78" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="80" y="359" width="180" height="82" rx="7" fill="white" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="330" y="359" width="210" height="82" rx="7" fill="white" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="610" y="359" width="320" height="82" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="1000" y="359" width="210" height="82" rx="7" fill="white" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="1280" y="359" width="240" height="82" rx="7" fill="#EDF7F6" stroke="#087F86" stroke-width="1.7"/>
+<circle cx="295" cy="400" r="4" fill="#182B46"/>
+<rect x="78" y="578" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="82" y="651" width="198" height="84" rx="7" fill="#EEF3FC" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="334" y="651" width="216" height="84" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="216" y="829" width="248" height="90" rx="7" fill="#EDF7F6" stroke="#087F86" stroke-width="1.7"/>
+<rect x="642" y="578" width="28" height="28" rx="5" fill="#182B46" stroke="none" stroke-width="1.5"/>
+<rect x="674" y="665" width="190" height="84" rx="7" fill="#EEF3FC" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="914" y="665" width="190" height="84" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="674" y="803" width="190" height="84" rx="7" fill="white" stroke="#315DA8" stroke-width="1.7"/>
+<rect x="914" y="803" width="190" height="84" rx="7" fill="#FFF6E9" stroke="#AD6515" stroke-width="1.7"/>
+<rect x="1222" y="770" width="258" height="110" rx="7" fill="#EDF7F6" stroke="#087F86" stroke-width="1.7"/>
+<rect x="1222" y="939" width="258" height="62" rx="7" fill="white" stroke="#087F86" stroke-width="1.7"/>
+</g>
+<g id="labels">
+<text id="label-0" x="96" y="44" font-size="14" fill="#087F86" font-weight="700" letter-spacing="2.0">EDGEFORMER STUDIO</text>
+<text id="label-1" x="1544" y="44" font-size="13" fill="#5E6F85" font-weight="400" text-anchor="end" letter-spacing="1.7">FIGURE 03</text>
+<text id="label-2" x="56" y="100" font-size="38" fill="#182B46" font-weight="700">Precision simulation</text>
+<text id="label-3" x="56" y="137" font-size="19" fill="#5E6F85" font-weight="400">A shared Q/DQ primitive; different inference and training paths.</text>
+<text id="label-4" x="92" y="208" font-size="16" fill="white" font-weight="700" text-anchor="middle">A</text>
+<text id="label-5" x="119" y="209" font-size="21" fill="#182B46" font-weight="700">Weight quantize–dequantize (Q/DQ)</text>
+<text id="label-6" x="535.0" y="266" font-size="20" fill="#AD6515" font-weight="700" text-anchor="middle">Per-output-channel scale</text>
+<text id="label-7" x="535.0" y="294" font-size="19" fill="#182B46" font-weight="400" text-anchor="middle">s<tspan baseline-shift="sub" font-size="70%">c</tspan> = max<tspan baseline-shift="sub" font-size="70%">i</tspan> |W<tspan baseline-shift="sub" font-size="70%">c,i</tspan>| / q<tspan baseline-shift="sub" font-size="70%">max</tspan></text>
+<text id="label-8" x="1220" y="268" font-size="23" fill="#AD6515" font-weight="400">q<tspan baseline-shift="sub" font-size="70%">max</tspan> = 2ᵇ⁻¹ − 1</text>
+<text id="label-9" x="1220" y="304" font-size="17" fill="#5E6F85" font-weight="400">W4: −7…7     W8: −127…127</text>
+<text id="label-10" x="170.0" y="390" font-size="20" fill="#315DA8" font-weight="700" text-anchor="middle">Weight W</text>
+<text id="label-11" x="170.0" y="418" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Floating tensor</text>
+<text id="label-12" x="435.0" y="390" font-size="21" fill="#AD6515" font-weight="700" text-anchor="middle">Divide</text>
+<text id="label-13" x="435.0" y="418" font-size="20" fill="#182B46" font-weight="400" text-anchor="middle">W / s<tspan baseline-shift="sub" font-size="70%">c</tspan></text>
+<text id="label-14" x="770.0" y="390" font-size="21" fill="#AD6515" font-weight="700" text-anchor="middle">Round &amp; clip</text>
+<text id="label-15" x="770.0" y="418" font-size="18" fill="#182B46" font-weight="400" text-anchor="middle">q = clip(round(W / s<tspan baseline-shift="sub" font-size="70%">c</tspan>))</text>
+<text id="label-16" x="1105.0" y="390" font-size="21" fill="#AD6515" font-weight="700" text-anchor="middle">Rescale</text>
+<text id="label-17" x="1105.0" y="418" font-size="20" fill="#182B46" font-weight="400" text-anchor="middle">W̃ = q · s<tspan baseline-shift="sub" font-size="70%">c</tspan></text>
+<text id="label-18" x="1400.0" y="390" font-size="20" fill="#087F86" font-weight="700" text-anchor="middle">Weight W̃</text>
+<text id="label-19" x="1400.0" y="418" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Floating Q/DQ values</text>
+<text id="label-20" x="56" y="525" font-size="16" fill="#5E6F85" font-weight="400">Q/DQ returns floating values. Bias and normalization parameters remain floating.</text>
+<text id="label-21" x="92" y="598" font-size="16" fill="white" font-weight="700" text-anchor="middle">B</text>
+<text id="label-22" x="119" y="599" font-size="21" fill="#182B46" font-weight="700">Weight-only PTQ</text>
+<text id="label-23" x="181.0" y="682" font-size="20" fill="#315DA8" font-weight="700" text-anchor="middle">Trained W</text>
+<text id="label-24" x="181.0" y="710" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Floating weights</text>
+<text id="label-25" x="442.0" y="682" font-size="21" fill="#AD6515" font-weight="700" text-anchor="middle">Q/DQ</text>
+<text id="label-26" x="442.0" y="710" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Store floating W̃</text>
+<text id="label-27" x="340.0" y="860" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Conv / Linear</text>
+<text id="label-28" x="340.0" y="888" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Floating execution</text>
+<text id="label-29" x="355" y="774" font-size="20" fill="#AD6515" font-weight="400">W̃</text>
+<text id="label-30" x="82" y="855" font-size="18" fill="#315DA8" font-weight="400">Input x</text>
+<text id="label-31" x="511" y="858" font-size="20" fill="#182B46" font-weight="400" text-anchor="middle">y</text>
+<text id="label-32" x="82" y="981" font-size="16" fill="#5E6F85" font-weight="400">No parameter updates after quantization.</text>
+<text id="label-33" x="656" y="598" font-size="16" fill="white" font-weight="700" text-anchor="middle">C</text>
+<text id="label-34" x="683" y="599" font-size="21" fill="#182B46" font-weight="700">Quantization-aware training</text>
+<text id="label-35" x="769.0" y="696" font-size="20" fill="#315DA8" font-weight="700" text-anchor="middle">Master W</text>
+<text id="label-36" x="769.0" y="724" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Floating weights</text>
+<text id="label-37" x="1009.0" y="696" font-size="19" fill="#AD6515" font-weight="700" text-anchor="middle">Weight Q/DQ</text>
+<text id="label-38" x="1009.0" y="724" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Per channel</text>
+<text id="label-39" x="769.0" y="834" font-size="20" fill="#315DA8" font-weight="700" text-anchor="middle">Input x</text>
+<text id="label-40" x="769.0" y="862" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Floating tensor</text>
+<text id="label-41" x="1009.0" y="834" font-size="19" fill="#AD6515" font-weight="700" text-anchor="middle">Input Q/DQ</text>
+<text id="label-42" x="1009.0" y="862" font-size="16" fill="#182B46" font-weight="400" text-anchor="middle">Dynamic per tensor</text>
+<text id="label-43" x="1351.0" y="801" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Conv / Linear</text>
+<text id="label-44" x="1351.0" y="829" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Floating operator</text>
+<text id="label-45" x="1351.0" y="854" font-size="17" fill="#182B46" font-weight="400" text-anchor="middle">Bias stays floating</text>
+<text id="label-46" x="1368" y="743" font-size="20" fill="#AD6515" font-weight="400">W̃</text>
+<text id="label-47" x="1163" y="831" font-size="20" fill="#AD6515" font-weight="400" text-anchor="middle">x̃</text>
+<text id="label-48" x="1351.0" y="978" font-size="21" fill="#087F86" font-weight="700" text-anchor="middle">Task loss</text>
+<text id="label-49" x="1368" y="917" font-size="20" fill="#182B46" font-weight="400">y</text>
+<text id="label-50" x="914" y="955" font-size="19" fill="#087F86" font-weight="400" text-anchor="middle">STE: ∂QDQ / ∂z ≈ 1</text>
+<text id="label-51" x="914" y="1006" font-size="15" fill="#5E6F85" font-weight="400" text-anchor="middle">AdamW updates floating master weights</text>
+<text id="label-52" x="56" y="1072" font-size="16" fill="#5E6F85" font-weight="400">Solid arrows: forward values. Dashed amber: scales. Dashed teal: surrogate gradient. Both paths simulate low-bit numerics.</text>
+</g>
 </svg>
