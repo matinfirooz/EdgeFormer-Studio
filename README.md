@@ -8,6 +8,7 @@
 
 EdgeFormer Studio is a PyTorch toolkit for reproducible numerical and hardware-cost experiments on compact Vision Transformers. It connects training and validation to weight quantization, quantization-aware training, approximate-arithmetic sensitivity, attention inspection, and matched design comparisons.
 
+
 ![Experiment architecture](assets/architecture.svg)
 
 > **What the precision labels mean:** W4/W8 PTQ and QAT simulate quantization using floating tensors and floating operator kernels. Packed storage and compute energy are analytical estimates. CPU/CUDA latency is measured execution time. These are separate kinds of evidence.
